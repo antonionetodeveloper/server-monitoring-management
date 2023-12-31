@@ -1,27 +1,11 @@
-slint::slint!{
-    import { Button , VerticalBox } from "std-widgets.slint";
+slint::include_modules!();
+use slint::Weak;
 
-    export component App inherits Window {
-        in property <int> counter: 1;
-        callback clicked <=> btn.clicked;
+pub fn content() -> Result<(), slint::PlatformError> {
+    let app: AppWindow = AppWindow::new().unwrap();
+    let weak: Weak<AppWindow> = app.as_weak();
 
-        VerticalBox {
-            Text { text: "Hello, world! " + counter; }
-            btn := Button { text: "Click me!"; }
-        }
-    }
-}
-
-
-pub fn content() {
-    let app: App = App::new().unwrap();
-    let weak = app.as_weak();
     
-    app.on_clicked(move || {
-        let app: App = weak.upgrade().unwrap();
-        app.set_counter(app.get_counter() + 1);
-    });
 
     app.run().unwrap();
 }
-

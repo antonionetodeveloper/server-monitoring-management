@@ -1,0 +1,28 @@
+import { ChangePath } from "../pages/utils.slint";
+
+export component Button {
+    in property <string> choice;
+    Rectangle {
+        background: ta.pressed ? #0c03ae : ta.has-hover ? blue : white;
+        Text {
+            text: root.choice;
+            color: ta.pressed ? white : ta.has-hover ? white : black;
+            font-size: 14px;
+            font-family: "Arial";
+        }
+
+        border-radius: 15px;
+        border-width: 2px;
+        border-color: self.background.darker(20%);
+
+        animate background {
+            duration: 0.2s;
+        }
+
+        ta := TouchArea {
+            clicked => {
+                ChangePath.redirect(root.choice);
+            }
+        }
+    }
+}

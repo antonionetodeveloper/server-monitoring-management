@@ -1,0 +1,21 @@
+import { VerticalBox } from "std-widgets.slint";
+import { Button } from "../../components/button.slint";
+
+export component AppWindow inherits Window {
+    in-out property<string> choice: "None";
+    callback request-increase-value();
+    VerticalBox {
+        padding: 28px;
+
+        Text {
+            text: "Welcome to Server Monitoring Manager!";
+            horizontal-alignment: center;
+            font-size: 15px;
+        }
+        VerticalBox {
+            Button { choice: "Add Server"; }
+            Button { choice: "Manage Servers"; }
+            Button { choice: "Show Logs"; }
+        }
+    }
+}

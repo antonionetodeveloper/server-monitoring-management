@@ -1,14 +1,18 @@
+slint::include_modules!();
+
 pub mod pages {
     pub mod home {
         pub mod page;
     }
 }
 
+
 fn main() {
-    println!("Starting SSM...");
+    println!("Starting SMM...");
     router();
 }
 
-pub fn router() {
-    pages::home::page::content();
+fn router() {
+    let home: Result<(), slint::PlatformError> = pages::home::page::content();
+    return home.unwrap();
 }
